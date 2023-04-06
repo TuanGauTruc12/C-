@@ -1,0 +1,36 @@
+﻿<div  id="login" class="flex justify-center items-center mt-8 mb-12 h-full d-none">
+    <div class="form w-full shadow-2xl shadow-yellow-500/50 p-10 flex flex-col gap-8">
+        <div class="title w-full flex justify-center font-semibold text-2xl">
+            <h3 class="title">ĐĂNG NHẬP</h3>
+        </div>
+        <div class="w-full flex justify-between items-center gap-4 font-serif text-xl">
+            <label for="email" class="flex-none">
+                Nhập email
+            </label>
+            <input style="max-width: 100%; margin-left: 24px;" id="email"
+                   class="w-full rounded-md p-2 email flex-auto"
+                   type="email"
+            />
+        </div>
+        <div class="w-full flex justify-between items-center gap-4 font-serif text-xl">
+            <label for="password" class="flex-none">
+                Nhập mật khẩu
+            </label>
+            <input style="max-width: 100%; margin-left: 4px;" id="password"
+                   class="w-full p-2 shadow-2xl password"
+                   type="password"
+            />
+        </div>
+
+        <button class="btn w-full p-4">
+            Đăng nhập ngay
+        </button>
+
+        <div class="desc flex gap-4 text-xl items-center">
+            <h3>Bạn chưa có tài khoản?</h3>
+            <button class="cursor-pointer text-xl font-bold btn" onclick="register()">
+                Tạo mới
+            </button>
+        </div>
+    </div>
+</div>

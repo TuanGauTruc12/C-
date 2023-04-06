@@ -1,0 +1,85 @@
+﻿@{
+    var videos = (ViewData["videos"] as List<StudyEnglish.Models.Video>);
+}
+@{
+    ViewBag.Title = "Home Page";
+}
+<main class="mt-3">
+    <div id="bbcle-content" style="max-width: 90%; margin: 0 auto" class="flex-column d-flex">
+
+        @foreach (var category in ViewData["categories"] as List<StudyEnglish.Models.DanhMuc>)
+        {
+                    if (videos.Where(v => v.maDanhMuc == category.maDanhMuc).ToList().Count != 0)
+                    {
+
+                             <h1 style="font-size: 18px; margin-top: 16px; transform: translateX(-60px);">@(category.tenDanhMuc)</h1>
+                             <div role="article" class="mt-3 d-flex align-items flex-column">
+                                 <div id="carouselExampleControls" class="carousel slide d-flex gap-3" data-bs-ride="carousel">
+
+                                     @{
+
+                                         int check = 0;
+                                         for (int i = 0; i < videos.Count; i++)
+                                         {
+
+                                             if (i == 0)
+                                             {
+                                                 if (videos.Where(v => v.maDanhMuc == category.maDanhMuc).ToList().Count > 2)
+                                                 {
+                                                     <button class="carousel-control-prev d-flex align-items-center position-absolute bg-black" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                         <span class="visually-hidden">Previous</span>
+                                                     </button>
+                                                 }
+                                             }
+                                             if (videos[i].maDanhMuc == category.maDanhMuc)
+                                             {
+                                                 
+                                                 check++;
+                                                 if (check <= 3)
+                                                 {
+                                                         <div class="col-4 d-flex">
+                                                             <div class="card w-100 carousel-item active" style="height: 130%;">
+                                                                     <div class="d-flex">
+                                                                         <img style="width: 100px; height: 100px; margin: 0 auto" src="@Url.Content(videos[i].image)" class="card-img-top" alt="...">
+
+                                                                     </div>
+
+                                                                     <div class="card-body d-flex flex-column w-100 justify-content-end">
+                                                                         <div class="d-flex flex-column">
+
+
+                                                                             <h5 class="card-title m-0 text-center bg-warning" style="height: 3.2rem; line-height: 1.6rem">@(videos[i].tenVideo)</h5>
+                                                                             <div class="d-flex mb-2 bg-warning">
+                                                                                 <p class="card-text text-center text">@(videos[i].MucDo.tenMucDo)</p>
+                                                                                 <p class="card-text text-center">@(videos[i].time)</p>
+                                                                             </div>
+                                                                         </div>
+
+
+                                                                         <a href="/Video/@(videos[i].maVideo)" class="btn btn-primary">Học ngay</a>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                 }
+                                             }
+                                         }
+
+                                         if (check != 2)
+                                         {
+
+                                                         <button class="carousel-control-next d-flex align-items-center position-absolute bg-black" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                             <span class="visually-hidden">Next</span>
+                                                         </button>
+                                                         }
+
+                                                         }
+                                                     </div>
+                                                 </div>
+                             }
+                             }
+
+                             <div class="clearfix"></div>
+                         </div>
+</main>

@@ -1,0 +1,61 @@
+﻿<div id="register" class="flex justify-center items-center mt-8 mb-12 h-full">
+    <div class="form w-full shadow-2xl shadow-yellow-500/50 p-10 flex flex-col gap-8">
+        <div class="title w-full flex justify-center font-semibold text-2xl">
+            <h3 class="title">ĐĂNG KÝ</h3>
+        </div>
+
+        <div style="gap: 7.8rem;" class="w-full flex font-serif text-xl justify-between items-center position-relative">
+            <label class="flex-none" for="name">
+                Nhập tên
+            </label>
+            <input id="name"
+                   class="w-full rounded-md p-2 max-w-full border-solid boder border-red-500 gap-10"
+                   type="text" />
+        </div>
+
+        <div style="gap: 6.5rem;" class="w-full flex font-serif text-xl justify-between gap-10 items-center position-relative">
+            <label class="flex-none" for="emailRegister">
+                Nhập email
+            </label>
+            <input id="emailRegister"
+                   class="w-full rounded-md p-2 max-w-full"
+                   type="email" />
+        </div>
+        <div style="gap: 4.8rem;" class="w-full flex font-serif text-xl justify-between gap-10 items-center position-relative">
+            <label for="passwordRegister" class="flex-none">
+                Nhập mật khẩu
+            </label>
+            <input id="passwordRegister"
+                   class="w-full p-2 max-w-full shadow-2xl password"
+                   type="password" />
+        </div>
+        <div style="gap: 3.4rem;" class="w-full flex font-serif text-xl justify-between gap-10 items-center position-relative">
+            <label for="repassword" class="flex-none">
+                Nhập lại mật khẩu
+            </label>
+            <input id="repassword"
+                   class="w-full p-2 max-w-full shadow-2xl"
+                   type="password" />
+        </div>
+
+        <div class="w-full flex font-serif text-xl justify-between gap-10 items-center position-relative">
+            <label for="phoneNumber" class="flex-none">
+                Nhập số điện thoại
+            </label>
+            <input id="phoneNumber"
+                   class="w-full p-2 max-w-full shadow-2xl"
+                   type="tel" />
+        </div>
+
+        <button onclick="handleRegister()" class="h-none w-full p-4 btn mt-4">
+            Đăng ký
+        </button>
+
+        <div class="desc flex gap-4 text-xl items-center mt-4">
+            <h3>Bạn đã có tài khoản?</h3>
+            <span class="text-text-primary-green cursor-pointer text-xl font-bold btn" onclick="login();">
+                đăng nhập
+            </span>
+        </div>
+    </div>
+</div>

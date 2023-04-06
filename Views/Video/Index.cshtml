@@ -1,0 +1,64 @@
+﻿@{
+    var video = ViewData["video"] as StudyEnglish.Models.Video;
+    var baiTaps = ViewData["baiTaps"] as List<StudyEnglish.Models.BaiTap>;
+    var arrayIDQuestion = new List<int>();
+    baiTaps.ForEach(b =>
+    {
+        arrayIDQuestion.Add(b.maBt);
+    });
+    var result = ViewData["result"] as List<StudyEnglish.Models.Result>;
+    int[] arrayRamdom = new int[baiTaps.Count];
+    Random randNum = new Random();
+    int random = randNum.Next(0, arrayIDQuestion.Count);
+    StudyEnglish.Models.BaiTap baiTap = @video.BaiTap.Where(v => v.maBt == arrayIDQuestion[random]).FirstOrDefault();
+    string questions = baiTap.CauHoi;
+    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+    string question = questions.Replace("__________", "<input class = \"answer\" style=\"max-width: 100px; font-size: 20px;\" type=\"text\" />");
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (result == null)
+{
+    <div class="d-flex flex-column mt-4">
+        <div class="d-flex justify-content-between">
+
+            <span class="b-font-weight-500">@video.tenVideo</span>
+            <span class="b-font-weight-500">@video.MucDo.tenMucDo</span>
+        </div>
+        <div class="d-flex mt-4 gap-4" style="height: 400px;">
+            <video style="width: 60%; height: 400px;" controls>
+                <source src="@Url.Content(video.linkVideo)" type="video/mp4">
+            </video>
+            <div style="display: flex; flex: auto; flex-direction: column;">
+                <p style="height: 400px; white-space: pre-line; overflow: overlay; font-size: 20px; background-color: #ffe923" class="b-font-weight-500">
+                    @Html.Raw(question)
+                </p>
+                <button onclick="handleAnswer(@baiTap.maBt)" style="font-size: large;" class="btn btn-success">Answer</button>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <table class="mt-4" style="width:100%">
+        <tr>
+            <th>Question Number</th>
+            <th>Answer</th>
+            <th>Question & Answer</th>
+        </tr>
+
+        @foreach (StudyEnglish.Models.Result answers in result)
+        {
+            <tr>
+                <td>@answers.AnswerNumber</td>
+                <td>@answers.FailValue</td>
+                <td>@(answers.Message == true ? "Success" : "Fail") </td>
+            </tr>
+        }
+
+    </table>
+}
+    }
